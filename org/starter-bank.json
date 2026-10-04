@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "name": "Example Community Bank (fictional starter)",
+  "sector": "banking",
+  "size": "mid-size, non-SIFI",
+  "regulators": [
+    "FFIEC member agencies",
+    "FINRA (broker-dealer affiliate)"
+  ],
+  "applicability": {
+    "all_banks": true,
+    "finra_member": true,
+    "fed_member": true,
+    "sifi": false
+  },
+  "tiers": [
+    {
+      "name": "Tier 1",
+      "rto_hours": 4,
+      "rpo_hours": 0.25,
+      "description": "Customer-facing and payment systems"
+    },
+    {
+      "name": "Tier 2",
+      "rto_hours": 24,
+      "rpo_hours": 4,
+      "description": "Internal operations needed within a day"
+    },
+    {
+      "name": "Tier 3",
+      "rto_hours": 72,
+      "rpo_hours": 24,
+      "description": "Everything that can wait a few days"
+    }
+  ],
+  "role_titles": {
+    "risk_owner": "Business line risk owner",
+    "compliance_officer": "Compliance officer",
+    "plan_owner": "Plan owner",
+    "bcdr_pm": "BC/DR program manager",
+    "weekly_digest": "Weekly BC/DR digest"
+  },
+  "routing": {
+    "critical": [
+      "risk_owner",
+      "compliance_officer"
+    ],
+    "high": [
+      "risk_owner"
+    ],
+    "medium": [
+      "plan_owner",
+      "bcdr_pm"
+    ],
+    "low": [
+      "weekly_digest"
+    ],
+    "format": [
+      "bcdr_pm"
+    ]
+  },
+  "sla": {
+    "critical": [
+      15,
+      5
+    ],
+    "high": [
+      30,
+      null
+    ],
+    "medium": [
+      60,
+      null
+    ],
+    "low": [
+      null,
+      null
+    ]
+  },
+  "terminology": {},
+  "thresholds": {
+    "contact_stale_medium_days": 90,
+    "contact_stale_high_days": 180,
+    "plan_stale_months": 18,
+    "annual_test_required": false
+  },
+  "plan_template": [
+    {
+      "title": "Purpose and scope",
+      "covers_tags": [
+        "scope"
+      ]
+    },
+    {
+      "title": "Business impact analysis summary",
+      "covers_tags": [
+        "bia"
+      ]
+    },
+    {
+      "title": "Recovery objectives (RTO/RPO)",
+      "covers_tags": [
+        "rto",
+        "rpo"
+      ]
+    },
+    {
+      "title": "Roles, contacts and escalation",
+      "covers_tags": [
+        "roles",
+        "contacts"
+      ]
+    },
+    {
+      "title": "Critical vendors and third parties",
+      "covers_tags": [
+        "third_party"
+      ]
+    },
+    {
+      "title": "Recovery procedures",
+      "covers_tags": [
+        "procedures"
+      ]
+    },
+    {
+      "title": "Communications",
+      "covers_tags": [
+        "communications"
+      ]
+    },
+    {
+      "title": "Testing and maintenance",
+      "covers_tags": [
+        "testing",
+        "maintenance"
+      ]
+    }
+  ],
+  "defaults_used": []
+}

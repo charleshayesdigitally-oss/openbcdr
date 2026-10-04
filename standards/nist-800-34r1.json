@@ -28,7 +28,8 @@
       "requirement": "Each system component within the plan's scope is tested to confirm the accuracy of its individual recovery procedures.",
       "mandatory": false,
       "applicability": [
-        "all_banks"
+        "all_banks",
+        "any_organization"
       ],
       "related_standards": [],
       "related_regulations": [],
@@ -51,7 +52,8 @@
       "requirement": "Testing is conducted in as close to an operating environment as possible.",
       "mandatory": false,
       "applicability": [
-        "all_banks"
+        "all_banks",
+        "any_organization"
       ],
       "related_standards": [],
       "related_regulations": [],
@@ -73,7 +75,8 @@
       "requirement": "The plan is reviewed and updated regularly as part of the organisation's change management process.",
       "mandatory": false,
       "applicability": [
-        "all_banks"
+        "all_banks",
+        "any_organization"
       ],
       "related_standards": [],
       "related_regulations": [],
@@ -95,7 +98,8 @@
       "requirement": "The plan states activation criteria, and the designated authority who activates it when a criterion is met.",
       "mandatory": false,
       "applicability": [
-        "all_banks"
+        "all_banks",
+        "any_organization"
       ],
       "related_standards": [],
       "related_regulations": [],
@@ -118,7 +122,8 @@
       "requirement": "The plan defines a recovery time objective for each system resource in its scope.",
       "mandatory": false,
       "applicability": [
-        "all_banks"
+        "all_banks",
+        "any_organization"
       ],
       "related_standards": [],
       "related_regulations": [],
@@ -140,7 +145,8 @@
       "requirement": "The plan defines a recovery point objective stating the point in time to which data must be recoverable after an outage.",
       "mandatory": false,
       "applicability": [
-        "all_banks"
+        "all_banks",
+        "any_organization"
       ],
       "related_standards": [],
       "related_regulations": [],

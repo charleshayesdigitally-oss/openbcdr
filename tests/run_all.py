@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SUITES = ["test_offline.py", "test_llm_paths.py", "test_index_build.py", "test_import.py", "test_ci_checks.py"]
+SUITES = ["test_offline.py", "test_llm_paths.py", "test_index_build.py", "test_import.py", "test_ci_checks.py", "test_profile.py"]
 
 failed = []
 for suite in SUITES:

@@ -246,7 +246,10 @@ def check_vendors(plan: PlanExtract) -> list[Issue]:
 # ----------------------------------------------------------- E. Test coverage
 
 def check_tests(plan: PlanExtract, today: date | None = None,
-                finra_member: bool = True) -> list[Issue]:
+                finra_member: bool = True,
+                annual_required: bool | None = None) -> list[Issue]:
+    """`annual_required` comes from an organisation profile. None (no profile)
+    keeps the original rule: only a FINRA member is held to annual testing."""
     today = today or date.today()
     issues: list[Issue] = []
 
@@ -267,6 +270,14 @@ def check_tests(plan: PlanExtract, today: date | None = None,
             "No test within the last 12 months",
             "Most recent documented test is " + latest.test_date.isoformat()  # type: ignore[union-attr]
             + ", " + str(days) + " days ago. FINRA Rule 4370 requires annual testing.",
+        ))
+    elif annual_required and days > 365:
+        issues.append(Issue(
+            "test_annual", "high",
+            "No test within the last 12 months",
+            "Most recent documented test is " + latest.test_date.isoformat()  # type: ignore[union-attr]
+            + ", " + str(days) + " days ago. Your organisation profile asks for a test"
+            " at least every 12 months.",
         ))
 
     if plan.plan_version and latest.plan_version_tested and \
@@ -340,13 +351,14 @@ def check_freshness(plan: PlanExtract, today: date | None = None) -> list[Issue]
 
 
 def run_all(plan: PlanExtract, today: date | None = None,
-            finra_member: bool = True) -> list[Issue]:
+            finra_member: bool = True,
+            annual_required: bool | None = None) -> list[Issue]:
     issues: list[Issue] = []
     issues += check_rto_dependencies(plan)
     issues += check_contacts(plan, today)
     issues += check_procedures(plan)
     issues += check_vendors(plan)
-    issues += check_tests(plan, today, finra_member)
+    issues += check_tests(plan, today, finra_member, annual_required)
     issues += check_freshness(plan, today)
     order = {"critical": 0, "high": 1, "medium": 2, "low": 3}
     issues.sort(key=lambda i: (order.get(i.severity, 4), i.check, i.title))
