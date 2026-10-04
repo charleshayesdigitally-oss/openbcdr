@@ -498,6 +498,43 @@ def cmd_draft_fix(args) -> int:
     return 0
 
 
+def cmd_draft_plan(args) -> int:
+    """Draft a whole plan from an intake (calls the API, one call per section)."""
+    from . import draft_plan, onboard
+    org = getattr(args, "org_profile", None)
+    if org is None:
+        raise SystemExit("draft-plan needs --org <profile> (before the command): the plan follows its template")
+    if args.export_intake:
+        exp = onboard.check_out_path(Path(args.export_intake))
+        if exp.exists() and not args.force:
+            raise SystemExit(str(exp) + " already exists. Use --force to replace it.")
+        exp.write_text(draft_plan.export_intake(org), encoding="utf-8")
+        print("Intake written to " + str(exp) + ". Fill in the Answer: lines, then run")
+        print("  python -m openbcdr --org <profile> draft-plan --intake " + str(exp) + " --out <plan>.local.md")
+        return 0
+    if not args.intake or not args.out:
+        raise SystemExit("use --export-intake <file>, or --intake <file> --out <file>")
+    out = onboard.check_out_path(Path(args.out))
+    if out.exists() and not args.force:
+        raise SystemExit(str(out) + " already exists. Use --force to replace it.")
+    answers = draft_plan.read_intake(Path(args.intake).read_text(encoding="utf-8-sig"))
+    store = Store(args.db)
+    try:
+        text, outcomes = draft_plan.draft_plan(store, org, answers, mode=args.mode,
+                                               attested=args.attest_synthetic)
+    except BoundaryViolation as e:
+        store.close()
+        print("BOUNDARY REFUSAL: " + str(e), file=sys.stderr)
+        print("Nothing was sent to the API.", file=sys.stderr)
+        return 2
+    store.close()
+    out.write_text(text, encoding="utf-8")
+    done = sum(1 for o in outcomes if o["ok"])
+    print("Draft plan written to " + str(out) + ": " + str(done) + " of " + str(len(outcomes))
+          + " sections drafted, the rest marked for writing by hand. It is a draft to finish.")
+    return 0
+
+
 def cmd_instructions(args) -> int:
     """Fill AGENT-INSTRUCTIONS.md from the organisation profile (no API calls)."""
     from . import instructions, onboard
@@ -638,6 +675,18 @@ def build_parser() -> argparse.ArgumentParser:
                                    "(it holds plan content)")
     dfx.add_argument("--force", action="store_true")
     dfx.set_defaults(func=cmd_draft_fix)
+
+    dpl = sub.add_parser("draft-plan",
+                         help="draft a whole plan from a short intake (calls the API)")
+    dpl.add_argument("--export-intake", help="write the intake questions (name must contain .local.)")
+    dpl.add_argument("--intake", help="the filled-in intake")
+    dpl.add_argument("--out", help="where to write the draft plan (name must contain .local.)")
+    dpl.add_argument("--force", action="store_true")
+    dpl.add_argument("--mode", choices=["sandbox", "internal"], default="sandbox",
+                     help="the same data-boundary modes as ingest")
+    dpl.add_argument("--attest-synthetic", action="store_true",
+                     help="required in sandbox mode: attest the intake is synthetic or sanitized")
+    dpl.set_defaults(func=cmd_draft_plan)
 
     ins = sub.add_parser("instructions",
                          help="fill the agent instructions from your organisation profile")

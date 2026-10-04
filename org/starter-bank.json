@@ -88,52 +88,76 @@
     {
       "title": "Purpose and scope",
       "covers_tags": [
-        "scope"
+        "scope",
+        "critical_functions",
+        "critical_systems"
       ]
     },
     {
       "title": "Business impact analysis summary",
       "covers_tags": [
-        "bia"
+        "bia",
+        "prioritisation",
+        "recovery_priority"
       ]
     },
     {
       "title": "Recovery objectives (RTO/RPO)",
       "covers_tags": [
         "rto",
-        "rpo"
+        "objectives",
+        "rpo",
+        "backup"
       ]
     },
     {
       "title": "Roles, contacts and escalation",
       "covers_tags": [
+        "responsibilities",
         "roles",
-        "contacts"
+        "contacts",
+        "escalation",
+        "governance"
       ]
     },
     {
       "title": "Critical vendors and third parties",
       "covers_tags": [
-        "third_party"
+        "third_party",
+        "vendor",
+        "interdependency",
+        "dependency"
       ]
     },
     {
       "title": "Recovery procedures",
       "covers_tags": [
-        "procedures"
+        "procedures",
+        "recovery",
+        "activation",
+        "alternate_site",
+        "scenarios"
       ]
     },
     {
       "title": "Communications",
       "covers_tags": [
-        "communications"
+        "communication",
+        "crisis_comms",
+        "customer_obligations",
+        "disclosure"
       ]
     },
     {
       "title": "Testing and maintenance",
       "covers_tags": [
         "testing",
-        "maintenance"
+        "exercise",
+        "lessons_learned",
+        "maintenance",
+        "plan_freshness",
+        "change_management",
+        "documentation"
       ]
     }
   ],

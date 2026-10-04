@@ -408,7 +408,7 @@ _Q_HEADER = re.compile(r"^###\s+(\S+)\s*$")
 _SECTION_HEADERS = {"## " + t for t in SECTIONS.values()}
 
 
-def import_markdown(text: str) -> dict[str, str]:
+def import_markdown(text: str, known: Optional[set] = None) -> dict[str, str]:
     """Read `Answer:` lines back, keyed by the `### <id>` above them.
     Unknown ids and a question answered twice are errors, not guesses."""
     answers: dict[str, str] = {}
@@ -419,7 +419,7 @@ def import_markdown(text: str) -> dict[str, str]:
         m = _Q_HEADER.match(line)
         if m:
             current, last_answered = m.group(1), None
-            if current not in BY_ID:
+            if current not in (BY_ID if known is None else known):
                 raise SystemExit("Unknown question id in the document: " + current)
             if current in answers:
                 raise SystemExit("Question answered twice: " + current)

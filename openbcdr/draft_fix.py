@@ -80,14 +80,14 @@ def _has_numeric_char(text: str) -> list[str]:
     return [ch for ch in text if not ch.isascii() and unicodedata.numeric(ch, None) is not None]
 
 
-Basis = Literal["plan_text", "profile", "requirement", "inference", "assumption"]
+Basis = Literal["plan_text", "intake", "profile", "requirement", "inference", "assumption"]
 
 
 class DraftStatement(BaseModel):
     text: str = Field(description="One sentence or step of proposed plan text.")
     basis: Basis = Field(description="Where this statement comes from.")
     source_quote: str = Field(default="", description=(
-        "Required for basis plan_text, profile or requirement: one whole line copied character "
+        "Required for basis plan_text, intake, profile or requirement: one whole line copied character "
         "for character from that source, shown to the reader as the fact this statement builds "
         "on. Empty for inference or assumption."))
 
@@ -147,10 +147,15 @@ def _whole_lines(source: str) -> set[str]:
     return {ln.strip() for ln in source.splitlines() if ln.strip()}
 
 
-def verify(draft: "RemediationDraft", sources: dict[str, str], gap_req_id: Optional[str],
+def verify(draft: "RemediationDraft", sources: dict[str, str], allowed_reqs,
            section_titles: Optional[set[str]] = None) -> list[str]:
     """Deterministic checks over EVERY field that gets rendered. Returns problems;
-    empty means the draft may be shown. `sources` maps basis -> source text."""
+    empty means the draft may be shown. `sources` maps basis -> source text.
+    `allowed_reqs` is the requirement id (or set of ids) the draft may claim."""
+    if allowed_reqs is None:
+        allowed_reqs = set()
+    elif isinstance(allowed_reqs, str):
+        allowed_reqs = {allowed_reqs}
     problems: list[str] = []
     used: list[str] = []
     for i, st in enumerate(draft.statements, 1):
@@ -159,14 +164,17 @@ def verify(draft: "RemediationDraft", sources: dict[str, str], gap_req_id: Optio
         used += PLACEHOLDER.findall(st.text)
         for v in _values(st.text):
             problems.append(label + ": '" + v + "' is a specific value; write it as an [ORG: ...] placeholder")
+        if st.basis not in sources and st.basis not in ("inference", "assumption"):
+            problems.append(label + ": basis '" + st.basis + "' isn't available here (sources: "
+                            + ", ".join(sorted(sources)) + ")")
         if st.basis in sources and not st.source_quote.strip():
             problems.append(label + ": a " + st.basis.replace("_", " ") + " statement must carry "
                             "the line it builds on as its quote")
         if st.source_quote:
             q = st.source_quote.strip()
             if st.basis not in sources:
-                problems.append(label + ": a quote is only allowed for plan_text, profile or "
-                                "requirement statements")
+                problems.append(label + ": a quote is only allowed for statements built on a "
+                                "source (" + ", ".join(sorted(sources)) + ")")
             elif q not in _whole_lines(sources[st.basis]):
                 problems.append(label + ": its quote is not one whole line, word for word, of the "
                                 + st.basis.replace("_", " "))
@@ -189,15 +197,16 @@ def verify(draft: "RemediationDraft", sources: dict[str, str], gap_req_id: Optio
     if sorted(set(used)) != sorted(set(draft.placeholders)):
         problems.append("placeholders used and declared differ: used " + str(sorted(set(used)))
                         + ", declared " + str(sorted(set(draft.placeholders))))
-    extra = sorted(set(draft.addresses_req_ids) - ({gap_req_id} if gap_req_id else set()))
+    extra = sorted(set(draft.addresses_req_ids) - set(allowed_reqs))
     if extra:
-        problems.append("claims to address requirement(s) this gap is not about: " + ", ".join(extra))
+        problems.append("claims to address requirement(s) it was not given: " + ", ".join(extra))
     if not draft.statements:
         problems.append("the draft has no statements")
     return problems
 
 
-_TAG = re.compile(r"<\s*/?\s*(plan_document|organisation_facts|organisation_context)\s*>", re.IGNORECASE)
+_TAG = re.compile(r"<\s*/?\s*(plan_document|organisation_facts|organisation_context|intake)\s*>",
+                  re.IGNORECASE)
 
 
 def _fence(text: str) -> str:

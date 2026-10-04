@@ -4,11 +4,27 @@
   "sector": "general small business",
   "size": "1-50 people",
   "regulators": [],
-  "applicability": {"any_organization": true},
+  "applicability": {
+    "any_organization": true
+  },
   "tiers": [
-    {"name": "Must run", "rto_hours": 8, "rpo_hours": 4, "description": "Without it, you can't take orders, serve customers or get paid"},
-    {"name": "Same week", "rto_hours": 72, "rpo_hours": 24, "description": "Painful to lose, but you can work around it for a few days"},
-    {"name": "Can wait", "rto_hours": 168, "description": "Nice to have back; nothing stops without it"}
+    {
+      "name": "Must run",
+      "rto_hours": 8,
+      "rpo_hours": 4,
+      "description": "Without it, you can't take orders, serve customers or get paid"
+    },
+    {
+      "name": "Same week",
+      "rto_hours": 72,
+      "rpo_hours": 24,
+      "description": "Painful to lose, but you can work around it for a few days"
+    },
+    {
+      "name": "Can wait",
+      "rto_hours": 168,
+      "description": "Nice to have back; nothing stops without it"
+    }
   ],
   "role_titles": {
     "risk_owner": "Owner",
@@ -18,13 +34,40 @@
     "weekly_digest": "Weekly check-in"
   },
   "routing": {
-    "critical": ["risk_owner"],
-    "high": ["risk_owner"],
-    "medium": ["plan_owner"],
-    "low": ["weekly_digest"],
-    "format": ["plan_owner"]
+    "critical": [
+      "risk_owner"
+    ],
+    "high": [
+      "risk_owner"
+    ],
+    "medium": [
+      "plan_owner"
+    ],
+    "low": [
+      "weekly_digest"
+    ],
+    "format": [
+      "plan_owner"
+    ]
   },
-  "sla": {"critical": [5, 2], "high": [15, null], "medium": [30, null], "low": [null, null]},
+  "sla": {
+    "critical": [
+      5,
+      2
+    ],
+    "high": [
+      15,
+      null
+    ],
+    "medium": [
+      30,
+      null
+    ],
+    "low": [
+      null,
+      null
+    ]
+  },
   "terminology": {},
   "thresholds": {
     "contact_stale_medium_days": 90,
@@ -33,13 +76,76 @@
     "annual_test_required": true
   },
   "plan_template": [
-    {"title": "What this plan covers", "covers_tags": ["scope"]},
-    {"title": "What must keep running, and how fast", "covers_tags": ["bia", "rto", "rpo"]},
-    {"title": "Who does what, and how to reach them", "covers_tags": ["roles", "contacts"]},
-    {"title": "Vendors and services we depend on", "covers_tags": ["third_party"]},
-    {"title": "Step-by-step recovery", "covers_tags": ["procedures"]},
-    {"title": "Telling customers and staff", "covers_tags": ["communications"]},
-    {"title": "Testing the plan and keeping it current", "covers_tags": ["testing", "maintenance"]}
+    {
+      "title": "What this plan covers",
+      "covers_tags": [
+        "scope",
+        "critical_functions",
+        "critical_systems"
+      ]
+    },
+    {
+      "title": "What must keep running, and how fast",
+      "covers_tags": [
+        "bia",
+        "prioritisation",
+        "recovery_priority",
+        "rto",
+        "objectives",
+        "rpo",
+        "backup"
+      ]
+    },
+    {
+      "title": "Who does what, and how to reach them",
+      "covers_tags": [
+        "responsibilities",
+        "roles",
+        "contacts",
+        "escalation",
+        "governance"
+      ]
+    },
+    {
+      "title": "Vendors and services we depend on",
+      "covers_tags": [
+        "third_party",
+        "vendor",
+        "interdependency",
+        "dependency"
+      ]
+    },
+    {
+      "title": "Step-by-step recovery",
+      "covers_tags": [
+        "procedures",
+        "recovery",
+        "activation",
+        "alternate_site",
+        "scenarios"
+      ]
+    },
+    {
+      "title": "Telling customers and staff",
+      "covers_tags": [
+        "communication",
+        "crisis_comms",
+        "customer_obligations",
+        "disclosure"
+      ]
+    },
+    {
+      "title": "Testing the plan and keeping it current",
+      "covers_tags": [
+        "testing",
+        "exercise",
+        "lessons_learned",
+        "maintenance",
+        "plan_freshness",
+        "change_management",
+        "documentation"
+      ]
+    }
   ],
   "defaults_used": []
 }
