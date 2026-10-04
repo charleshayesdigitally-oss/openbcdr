@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "name": "Example Community Bank (fictional starter)",
-  "sector": "banking",
+  "sector": "community bank",
   "size": "mid-size, non-SIFI",
   "regulators": [
     "FFIEC member agencies",

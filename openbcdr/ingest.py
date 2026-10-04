@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from . import boundary, llm
+from . import boundary, config, llm
 from .models import PlanExtract
 
 SYSTEM = """You extract structured data from business continuity and disaster recovery plans.
@@ -49,7 +49,7 @@ def extract(
     """Boundary-check, then extract. Returns (PlanExtract, usage)."""
     boundary.enforce(raw_text, mode, attested)
 
-    system = [llm.cache_block(SYSTEM)]
+    system = [llm.cache_block(SYSTEM + config.ORG_CONTEXT)]
     user = (
         "Extract the structured record from this plan document.\n"
         + ("Use plan_id " + plan_id_hint + " if the document does not state one.\n" if plan_id_hint else "")

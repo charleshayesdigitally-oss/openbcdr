@@ -115,6 +115,15 @@ Answers are checked as a whole before anything is written, a blank answer keeps
 the starting value (and is listed in the profile's `defaults_used`), and the
 file name must contain `.local.` so a real profile is never committed.
 
+With a profile, the plan-reading prompts also learn the organisation's own words
+(a "playbook" is a plan), and an organisation no regulator oversees gets its
+findings framed as good practice, never as violations. To run the agent without
+the codebase, generate its instructions already filled in:
+
+```bash
+python -m openbcdr --org org/acme.local.json instructions --out acme-instructions.local.md
+```
+
 ---
 
 ## Running the agent without this codebase bound to it
