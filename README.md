@@ -122,6 +122,15 @@ fix. A section that fails is replaced by a marked "write this section by hand"
 stub with the reasons, never dropped. The result is a draft to finish, not a
 finished plan.
 
+### Practice advisories
+
+`coherence` and `report` also show **practice advisories**: good practice raised
+at industry conferences, not regulatory requirements. They carry no severity,
+are never scored and are never opened as gaps. Today: one person holding several
+recovery roles (or being their own backup), a latest test with no documented
+lessons or a failed test never re-run, and an AI tool in a critical path with no
+documented fallback (a keyword match, and it says so).
+
 ### Customise it to your organisation
 
 Pass an organisation profile with `--org` (before the command). Two fictional

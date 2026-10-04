@@ -86,6 +86,8 @@ For each open gap, `openbcdr draft-fix <gap_id>` proposes plan text that would c
 
 ## Design rule from industry practice — the `practice-advisory` finding class
 
+**Status:** built (`openbcdr/analyzers/advisory.py`), with three DET advisories from the list below: people as dependencies (part of idea 4), test follow-through (idea 2, without a findings table yet), AI dependencies (idea 5, keyword-based until the questionnaire captures AI tools).
+
 Most ideas below are good practice raised at industry conferences, not regulatory requirements. They get their own finding class: `practice-advisory`. No index `req_id`, no curated severity, never counted in the compliance score, and the report labels them plainly ("industry practice, not a regulatory requirement"). Any regulation a speaker mentioned is a **candidate index source to verify against primary text**, never a requirement on a speaker's say-so.
 
 ## Improvements from DRJ Fall 2026 public sessions (added 2026-10-04)

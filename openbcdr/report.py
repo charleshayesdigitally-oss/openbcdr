@@ -35,6 +35,7 @@ def render(
     gaps: Iterable = (),
     today: date | None = None,
     examiner_facing: bool = False,
+    advisories: Sequence = (),
 ) -> str:
     today = today or date.today()
     unvalidated = [r.req_id for r in requirements if not r.validated_by_human]
@@ -163,6 +164,12 @@ def render(
             rows = [i for i in issues if i.severity == sev]
             for i in rows:
                 L.append("  " + sev.upper().ljust(9) + " " + i.check.ljust(24) + " " + i.title)
+        L.append("")
+
+    # Examiner-facing output stays strictly regulatory: no practice advisories.
+    if advisories and not examiner_facing:
+        from .analyzers.advisory import lines as _advisory_lines
+        L.extend(_advisory_lines(advisories))
         L.append("")
 
     L.append("Method: coverage judged by model against the standards index; every")

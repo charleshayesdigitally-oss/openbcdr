@@ -23,7 +23,7 @@ from pathlib import Path
 
 from . import calibrate, config, import_findings, ingest, report, standards, triage, validate_index
 from . import profile as org_profile
-from .analyzers import coherence
+from .analyzers import advisory, coherence
 from .boundary import BoundaryViolation
 from .models import PlanExtract
 from .store import Store
@@ -110,6 +110,13 @@ def cmd_coherence(args) -> int:
         print("  " + i.severity.upper().ljust(10) + i.check.ljust(24) + i.title)
         if args.verbose:
             print("           " + i.detail)
+    # Practice advisories: shown, never scored, never opened as gaps.
+    advisories = advisory.run_all(plan)
+    for ln in advisory.lines(advisories):
+        print(ln)
+    if args.verbose:
+        for a in advisories:
+            print("           " + a.check + ": " + a.detail)
 
     if args.open_gaps:
         created, dup = triage.persist(store, triage.gaps_from_issues(issues, plan.plan_id))
@@ -178,7 +185,7 @@ def cmd_report(args) -> int:
     text = report.render(
         plan_id=plan.plan_id, plan_version=plan.plan_version, findings=findings,
         requirements=reqs, issues=issues, gaps=store.open_gaps(plan.plan_id),
-        examiner_facing=args.examiner,
+        examiner_facing=args.examiner, advisories=advisory.run_all(plan),
     )
     print(text)
     if args.out:
