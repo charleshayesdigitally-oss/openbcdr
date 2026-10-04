@@ -1,0 +1,8 @@
+OpenBCDR
+Copyright 2026 Charles Hayes and contributors
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The standards index (standards/*.json) paraphrases and briefly quotes public
+documents (FFIEC, FINRA, NIST). Those documents belong to their publishers;
+each record names its source and section.

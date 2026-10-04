@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: pip install -r requirements.txt
+      - name: Offline test suites (no API key, no network)
+        # CI has no organisation pattern file by design; the suites set
+        # BCDR_ALLOW_NO_LOCAL_PATTERNS for themselves where they need it.
+        run: python tests/run_all.py
+
+  guards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: No *.local.* file is tracked
+        run: python tools/ci_checks.py no-local-files
+      - name: Every commit is signed off (DCO)
+        if: github.event_name == 'pull_request'
+        run: python tools/ci_checks.py dco "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"

@@ -1,0 +1,14 @@
+*.sqlite3
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+# Organisation-specific values stay on this machine.
+config/boundary_patterns.local.txt
+# Any *.local.* file (patterns, org profiles, notes). CI refuses a tracked one.
+*.local.*
+CLAUDE.local.md
+.claude/settings.local.json
+# Generated transfer bundle: rebuild with `python tools/make_transfer.py`.
+dist/

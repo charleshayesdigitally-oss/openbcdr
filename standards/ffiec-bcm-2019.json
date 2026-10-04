@@ -1,0 +1,1045 @@
+{
+  "_README": [
+    "DRAFTED FROM PRIMARY SOURCES - NOT YET VALIDATED.",
+    "",
+    "Every record carries source_quote, copied from the primary source, and every",
+    "quote was mechanically verified against that source before the record was",
+    "written. Records whose quote could not be found were dropped.",
+    "",
+    "That makes these records GROUNDED, not VALIDATED. Before any record backs an",
+    "examiner-facing report: a named human opens the primary source, confirms the",
+    "section citation and the obligation, corrects the requirement wording, sets",
+    "gap_severity as a policy decision, and flips validated_by_human.",
+    "",
+    "  python -m openbcdr validate --file standards/<this file> --validator YOUR_NAME",
+    "",
+    "SOURCE: FFIEC IT Examination Handbook, Business Continuity Management,",
+    "November 2019 (v3). Booklet supplied directly 2026-09-04 after",
+    "ithandbook.ffiec.gov blocked automated retrieval.",
+    "",
+    "NOT MANDATORY, deliberately. The booklet says of itself (p.2): \"This booklet",
+    "does not impose requirements on entities. Instead, this booklet describes",
+    "practices that examiners may use to assess an entity's BCM function.\"",
+    "gap_severity is a separate field and still reflects examination consequence.",
+    "",
+    "Quotes verify against standards/sources/ffiec-bcm-2019-extract.txt, which is an",
+    "EXTRACT of the sections used, not the whole booklet. Validate against the",
+    "booklet itself - the extract only catches drift between it and these records.",
+    "",
+    "This booklet SUPERSEDED the 'Business Continuity Planning' booklet of February",
+    "2015. Anything citing an 'FFIEC BCP Booklet' is quoting a withdrawn document."
+  ],
+  "requirements": [
+    {
+      "req_id": "FFIEC-BCM-IIA-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "II.A Board and Senior Management Responsibilities",
+      "requirement": "Continuity objectives are set, and operations are adjusted in response to test results and actual events.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "governance",
+        "objectives"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should evaluate continuity risk, set short- and long-term continuity objectives, adopt policies and procedures to mitigate continuity risk, evaluate continuity performance, and adjust operations in response to test results and actual events.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIB-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "II.B Audit",
+      "requirement": "Internal audit or independent personnel review and validate the design and operating effectiveness of the BCM program.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "audit",
+        "independent_review"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "The board and senior management should engage internal audit or independent personnel to review and validate the design and operating effectiveness of the BCM program.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A Business Impact Analysis",
+      "requirement": "A BIA identifies all business functions in scope, prioritises them by criticality, analyses interdependencies, and assesses disruption impact through established metrics.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "bia",
+        "critical_functions"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should develop a BIA that identifies all business functions and prioritizes them in order of criticality, analyzes related interdependencies among business processes and systems, and assesses a disruption's impact through established metrics.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A Business Impact Analysis",
+      "requirement": "The BIA defines recovery priorities and resource dependencies for critical processes.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "bia",
+        "recovery_priority"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "The BIA should define recovery priorities and resource dependencies for critical processes.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA-3",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A Business Impact Analysis",
+      "requirement": "Interdependencies among critical operations, departments, personnel and services are identified, along with the functions most exposed to interruption.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "bia",
+        "interdependency"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "management should identify interdependencies among critical operations, departments, personnel, services, and the functions with the greatest exposure to interruption",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA1-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A.1 Identification of Critical Business Functions",
+      "requirement": "Critical assets and infrastructure the plan's scope depends on are inventoried, including those provided by third-party service providers.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "inventory",
+        "critical_systems",
+        "third_party"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should inventory the entity's critical assets (e.g., people, hardware, software, data, information, and cash) and infrastructure (e.g., network connectivity, communication lines, facilities, and utilities), including those provided by third-party service providers.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA1-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A.1 Identification of Critical Business Functions",
+      "requirement": "The identification methodology is repeatable, so information can be re-evaluated after significant changes.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "bia",
+        "repeatability"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "The methodology used should be repeatable, allowing management to reevaluate information after significant changes.",
+      "validated_by": "",
+      "gap_severity": "medium",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA2-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A.2 Interdependency Analysis",
+      "requirement": "Single points of failure are identified, including telecommunication lines, network connections, corruptible backups, single power sources and closely-sited data centers.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "single_point_of_failure",
+        "interdependency"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "management should identify single points of failure, which may include telecommunication lines, network connections between branches, backups that become corrupted, reliance on one power source, or data center locations in close geographic proximity",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA3-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A.3 Impact of Disruption",
+      "requirement": "Recovery objectives are established after determining a disruption's impact, using RPO, RTO and maximum tolerable downtime.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "rto",
+        "rpo",
+        "mtd",
+        "bia"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should establish recovery objectives after determining a disruption's impact. Common measurements include recovery point objective (RPO), recovery time objective (RTO), and maximum tolerable downtime (MTD).",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA3-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A.3 Impact of Disruption",
+      "requirement": "Where an RTO cannot be met, the plan records whether it is realistic and documents an action plan and milestones.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "rto",
+        "remediation"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "When it is not feasible to meet an RTO, management should verify whether the RTO is realistic, initiate an action plan and milestone(s) to document the situation, and, when appropriate, plan for its mitigation.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIA3-3",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.A.3 Impact of Disruption",
+      "requirement": "Interrelated RTOs are considered across dependent functions; a process with a shorter RTO depending on one with a longer RTO is analysed as a gap.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "rto",
+        "interdependency",
+        "coherence"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "a process with a shorter RTO that is dependent upon on a process with a longer RTO may indicate a gap that should be analyzed further",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIB-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.B Risk Assessment",
+      "requirement": "The likelihood and impact of potential disruptions are evaluated, including the geographic area of operation and risks affecting third-party service providers.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "risk_assessment",
+        "scenarios"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should evaluate the likelihood and impact of potential disruptions and events. As part of this evaluation, management should consider the geographical area where the entity operates.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IIIB-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "III.B Risk Assessment",
+      "requirement": "Worst-case scenarios, including destruction of facilities and loss of life, are addressed in the risk assessment.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "risk_assessment",
+        "worst_case"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Worst-case scenarios, such as destruction of the facilities and loss of life, should be addressed.",
+      "validated_by": "",
+      "gap_severity": "medium",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA3-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.3 Data Backup and Replication",
+      "requirement": "An accessible, off-site repository of software, configuration settings and related documentation is maintained.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "backup",
+        "offsite",
+        "configuration"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should maintain an accessible, off-site repository of software, configuration settings, and related documentation.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA3-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.3 Data Backup and Replication",
+      "requirement": "Effective procedures exist to recover critical networks and systems.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "backup",
+        "recovery",
+        "procedures"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should establish effective procedures to recover critical networks and systems.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA3-3",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.3 Data Backup and Replication",
+      "requirement": "Retention periods are determined for each iteration of data backup.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "backup",
+        "retention"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should determine the appropriate retention periods for each iteration of data backup.",
+      "validated_by": "",
+      "gap_severity": "medium",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA3-4",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.3 Data Backup and Replication",
+      "requirement": "Offline data backups are protected from destructive malware that may corrupt production and online backups.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "backup",
+        "cyber",
+        "ransomware"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "BCM should include the ability to protect offline data backups from destructive malware or other threats that may corrupt production and online backup versions of data.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA4-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.4 Personnel",
+      "requirement": "The plan accounts for mass absenteeism during an event or disruption.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "personnel",
+        "absenteeism"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "management should plan for mass absenteeism during an event or disruption",
+      "validated_by": "",
+      "gap_severity": "medium",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA5-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.5 Third-Party Service Providers",
+      "requirement": "Critical third-party service providers' susceptibility to multiple event scenarios is assessed and their resilience capabilities verified.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "third_party",
+        "vendor",
+        "resilience"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should assess critical third-party service providers' susceptibility to multiple event scenarios and verify such third parties' resilience capabilities.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA5-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.5 Third-Party Service Providers",
+      "requirement": "Contracts and SLAs with third-party service providers detail each party's roles and responsibilities for resilience.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "third_party",
+        "sla",
+        "contract"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Contracts and SLAs with third-party service providers should detail roles and responsibilities of each party to promote resilience.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA6-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.6 Telecommunications",
+      "requirement": "Appropriate redundancy levels exist in the telecommunications infrastructure supporting the plan's scope.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "telecommunications",
+        "redundancy"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "management should ensure appropriate redundancy levels in the entity's telecommunications infrastructure",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVA8-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.A.8 Change Management",
+      "requirement": "Recovery systems and documentation at alternate locations are updated to reflect production and primary system changes.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "change_management",
+        "plan_freshness"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "recovery systems and documentation at alternate locations should similarly be updated to reflect production and primary system changes",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-IVB-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "IV.B Communications",
+      "requirement": "Communication protocols and contact lists exist to notify stakeholders.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "communication",
+        "crisis_comms",
+        "contacts"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "BCM should include communication protocols and contact lists to notify stakeholders.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-V-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "V Business Continuity Plan",
+      "requirement": "The plan carries detail proportionate to the size and complexity of what it covers, and incorporates input from the business units in scope.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "bcp",
+        "scope"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should develop business continuity plan(s) (BCP) with sufficient detail in relation to the entity's size and complexity. The BCP should address key business needs and incorporate inputs from all business units.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-V-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "V Business Continuity Plan",
+      "requirement": "The plan is kept current with system enhancements and organisational changes.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "plan_freshness",
+        "maintenance"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "the BCP should be a living document, regularly updated so that it remains current with system enhancements and organizational changes",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-V-3",
+      "source": "FFIEC BCM Booklet",
+      "section": "V Business Continuity Plan",
+      "requirement": "The plan documents roles, responsibilities and required skills for personnel and third-party service providers.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "roles",
+        "responsibilities"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Roles, responsibilities, and required skills for entity personnel and third-party service providers.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-V-4",
+      "source": "FFIEC BCM Booklet",
+      "section": "V Business Continuity Plan",
+      "requirement": "The plan states escalation thresholds.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "escalation",
+        "thresholds"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Escalation thresholds.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-V-5",
+      "source": "FFIEC BCM Booklet",
+      "section": "V Business Continuity Plan",
+      "requirement": "The plan states prioritisation and procedures to recover functions, services and processes.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "recovery",
+        "procedures",
+        "prioritisation"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Prioritization and procedures to recover functions, services, and processes.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-V-6",
+      "source": "FFIEC BCM Booklet",
+      "section": "V Business Continuity Plan",
+      "requirement": "The plan states the scope and frequency of testing.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "testing",
+        "scope"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Scope and frequency of testing.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-V-7",
+      "source": "FFIEC BCM Booklet",
+      "section": "V Business Continuity Plan",
+      "requirement": "The plan and its supporting documentation are stored so they are readily accessible to personnel during an adverse event.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "accessibility",
+        "documentation"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "the BCP and supporting documentation should be stored so that it is readily accessible by personnel during adverse events",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VA-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "V.A Event Management",
+      "requirement": "The plan includes event management procedures detailing foreseeable event types with thresholds and responses, and how to report an event.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "event_management",
+        "escalation",
+        "procedures"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "The BCP should include event management procedures that detail reasonably foreseeable event types and provide thresholds and responses. Procedures should describe how to report an event to management and the situations that warrant notification to those who address events.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VB-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "V.B Continuity and Recovery",
+      "requirement": "Plans and procedures are clear, concise and executable in an emergency, such as checklists and step-by-step procedures.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "procedures",
+        "usability"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Business continuity plans and procedures should be clear, concise, and easy to implement in an emergency, such as checklists and step-by-step procedures.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VC-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "V.C Facilities and Infrastructure",
+      "requirement": "The plan identifies alternatives for core operations, facilities, infrastructure systems, suppliers, utilities, interdependent business partners and key personnel.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "facilities",
+        "alternate_site",
+        "dependency"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "The BCP should identify alternatives for core operations, facilities, infrastructure systems, suppliers, utilities, interdependent business partners, and key personnel.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VF2-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "V.F.2 Disaster Recovery",
+      "requirement": "Key processes to be maintained while systems are unavailable are identified, and the restoration order is prioritised and reflected in the BIA.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "disaster_recovery",
+        "prioritisation",
+        "bia"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should identify key business processes and activities to be maintained while IT systems and applications are unavailable and prioritize the order in which these systems are restored, which should be reflected in the BIA.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VF3-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "V.F.3 Crisis or Emergency Management",
+      "requirement": "The contact list is distributed, accessible to key personnel, and verified and updated regularly.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "contacts",
+        "currency",
+        "crisis_comms"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "The contact list should be distributed and accessible to key personnel and should be verified and updated regularly.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VI-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "VI Training",
+      "requirement": "The training program covers the conditions for activating the plan and what to do when key personnel are unavailable.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "training",
+        "activation"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "The training program should include conditions for activating the BCP and what to do when key personnel are unavailable.",
+      "validated_by": "",
+      "gap_severity": "medium",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIIA-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "VII.A Exercise and Test Program",
+      "requirement": "A comprehensive exercise and testing program exists with objectives and plans to validate the ability to restore critical business functions.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "testing",
+        "exercise",
+        "program"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should develop a comprehensive exercise and testing program including objectives, and plans to validate the entity's ability to restore critical business functions.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIIA-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "VII.A Exercise and Test Program",
+      "requirement": "The plan is retested soon after a significant change to the operating environment, since such changes can render existing test plans obsolete.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "testing",
+        "change_management",
+        "plan_freshness"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Significant changes can render existing test plans obsolete, so BCP(s) should be retested soon after the change.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIIF-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "VII.F Exercise and Test Scenarios",
+      "requirement": "Exercise and test scenarios are realistic and risk-based, simulating disruptions in the business functions covered.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "testing",
+        "scenarios"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should develop realistic exercise and test scenarios, based on risks, which simulate disruptions in business functions",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIII-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "VII.I Third-Party Service Provider Testing",
+      "requirement": "Test results, remediation action plans and status reports are requested and received from critical third-party service providers.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "third_party",
+        "testing",
+        "evidence"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should request and receive test results and reports, remediation action plans and status reports upon their completion, and related analysis or modeling.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIIK-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "VII.K Post-Exercise and Post-Test Actions",
+      "requirement": "Issues identified during exercises and tests are documented, with action plans and target dates for resolution.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "testing",
+        "lessons_learned",
+        "remediation"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Management should document issues identified during exercises and tests and create action plans with target dates for resolving issues.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIIK-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "VII.K Post-Exercise and Post-Test Actions",
+      "requirement": "The plan is updated based on test results.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "testing",
+        "plan_freshness",
+        "lessons_learned"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "Business line management should update the BCP based on test results",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIII2-1",
+      "source": "FFIEC BCM Booklet",
+      "section": "VIII Maintenance and Improvement",
+      "requirement": "The plan is reviewed and updated regularly to reflect the current environment.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "maintenance",
+        "plan_freshness"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "management should regularly review and update the business continuity program to reflect the current environment",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIII2-2",
+      "source": "FFIEC BCM Booklet",
+      "section": "VIII Maintenance and Improvement",
+      "requirement": "Version control is maintained on key continuity documents and the latest versions are readily available to the appropriate personnel.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "version_control",
+        "documentation"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "management should maintain version control of key business continuity documents and ensure that the latest versions are readily available to appropriate personnel",
+      "validated_by": "",
+      "gap_severity": "medium",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCM-VIII2-3",
+      "source": "FFIEC BCM Booklet",
+      "section": "VIII Maintenance and Improvement",
+      "requirement": "Backup copies of the continuity documentation exist in case the primary repository becomes inaccessible.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "documentation",
+        "backup",
+        "accessibility"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "November 2019 (v3)",
+      "source_quote": "management should maintain backup copies of relevant business continuity documentation in the event that the primary repository becomes inaccessible",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    }
+  ]
+}

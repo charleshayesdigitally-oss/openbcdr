@@ -1,0 +1,11 @@
+# Data-boundary deny list. One case-insensitive regex per line; blank/# ignored.
+# Any match REFUSES ingestion in --mode sandbox, and flags it in --mode internal.
+# For an in-house deployment, empty this file and put third-party markers here instead.
+#
+# This file is TRACKED and must stay generic. Patterns naming a specific
+# organisation or its internal systems go in config/boundary_patterns.local.txt,
+# which is gitignored, loaded on top of this file, and never packed into the
+# transfer bundle. A fresh clone has no local file until you create one.
+internal\s+use\s+only
+confidential\s*[-—:]\s*do\s+not\s+distribute
+proprietary\s+and\s+confidential

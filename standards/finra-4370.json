@@ -1,0 +1,507 @@
+{
+  "_README": [
+    "DRAFTED FROM PRIMARY SOURCES - NOT YET VALIDATED.",
+    "",
+    "Every record carries source_quote, copied from the primary source, and every",
+    "quote was mechanically verified against that source before the record was",
+    "written. Records whose quote could not be found were dropped.",
+    "",
+    "That makes these records GROUNDED, not VALIDATED. Before any record backs an",
+    "examiner-facing report: a named human opens the primary source, confirms the",
+    "section citation and the obligation, corrects the requirement wording, sets",
+    "gap_severity as a policy decision, and flips validated_by_human.",
+    "",
+    "  python -m openbcdr validate --file standards/<this file> --validator YOUR_NAME",
+    "",
+    "SOURCE: FINRA Rule 4370, full rule text from finra.org, retrieved 2026-09-04.",
+    "",
+    "MANDATORY. The rule is phrased in 'must' and these are the only mandatory",
+    "records in the index.",
+    "",
+    "SCOPE WARNING: every record here carries the finra_member applicability tag.",
+    "If the institution is NOT a FINRA member firm, the applicability profile drops",
+    "all of them and this file contributes nothing. Confirm member status before",
+    "relying on any coverage number."
+  ],
+  "requirements": [
+    {
+      "req_id": "FINRA-4370-a-1",
+      "source": "FINRA Rule 4370",
+      "section": "4370(a)",
+      "requirement": "The plan is written and identifies procedures relating to an emergency or significant business disruption.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "written_plan",
+        "bcp"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "Each member must create and maintain a written business continuity plan identifying procedures relating to an emergency or significant business disruption.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-a-2",
+      "source": "FINRA Rule 4370",
+      "section": "4370(a)",
+      "requirement": "The plan's procedures are reasonably designed to enable the firm to meet its existing obligations to customers.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "customer_obligations"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "Such procedures must be reasonably designed to enable the member to meet its existing obligations to customers.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-a-3",
+      "source": "FINRA Rule 4370",
+      "section": "4370(a)",
+      "requirement": "The plan addresses the firm's existing relationships with other broker-dealers and counter-parties.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "counterparty",
+        "third_party"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "In addition, such procedures must address the member's existing relationships with other broker-dealers and counter-parties.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-a-4",
+      "source": "FINRA Rule 4370",
+      "section": "4370(a)",
+      "requirement": "The plan can be produced promptly to FINRA staff on request.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "availability",
+        "disclosure"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "The business continuity plan must be made available promptly upon request to FINRA staff.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-b-1",
+      "source": "FINRA Rule 4370",
+      "section": "4370(b)",
+      "requirement": "The plan is updated whenever there is a material change to the firm's operations, structure, business or location.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "plan_freshness",
+        "change_management"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "Each member must update its plan in the event of any material change to the member's operations, structure, business or location.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-b-2",
+      "source": "FINRA Rule 4370",
+      "section": "4370(b)",
+      "requirement": "An annual review of the plan is conducted to determine whether modifications are necessary.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "annual_review"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "Each member must also conduct an annual review of its business continuity plan to determine whether any modifications are necessary",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-01",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(1)",
+      "requirement": "The plan addresses data back-up and recovery, both hard copy and electronic.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "backup",
+        "recovery"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(1) Data back-up and recovery (hard copy and electronic);",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-02",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(2)",
+      "requirement": "The plan addresses all mission critical systems within its scope.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "critical_systems"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(2) All mission critical systems;",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-03",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(3)",
+      "requirement": "The plan addresses financial and operational assessments.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "assessment"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(3) Financial and operational assessments;",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-04",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(4)",
+      "requirement": "The plan addresses alternate communications between customers and the firm.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "communication",
+        "crisis_comms"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(4) Alternate communications between customers and the member;",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-05",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(5)",
+      "requirement": "The plan addresses alternate communications between the firm and its employees.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "communication",
+        "crisis_comms"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(5) Alternate communications between the member and its employees;",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-06",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(6)",
+      "requirement": "The plan addresses an alternate physical location for employees.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "facility",
+        "alternate_site"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(6) Alternate physical location of employees;",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-07",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(7)",
+      "requirement": "The plan addresses the impact of critical business constituents, banks and counter-parties.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "third_party",
+        "vendor"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(7) Critical business constituent, bank, and counter-party impact;",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-08",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(8)",
+      "requirement": "The plan addresses regulatory reporting.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "regulatory_reporting"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(8) Regulatory reporting;",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-09",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(9)",
+      "requirement": "The plan addresses communications with regulators.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "communication",
+        "regulators"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "(9) Communications with regulators; and",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-10",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)(10)",
+      "requirement": "The plan states how the firm will assure customers' prompt access to funds and securities if it cannot continue business.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "customer_obligations"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "How the member will assure customers' prompt access to their funds and securities in the event that the member determines that it is unable to continue its business.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-11",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)",
+      "requirement": "Where a listed category is not applicable, the plan documents the rationale for excluding it.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "scope",
+        "documentation"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "The member's business continuity plan, however, must document the rationale for not including such category in its plan.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-c-12",
+      "source": "FINRA Rule 4370",
+      "section": "4370(c)",
+      "requirement": "Where the firm relies on another entity for a listed category or a mission critical system, the plan addresses that relationship.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "third_party",
+        "vendor",
+        "dependency"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "If a member relies on another entity for any one of the above-listed categories or any mission critical system, the member's business continuity plan must address this relationship.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-d-1",
+      "source": "FINRA Rule 4370",
+      "section": "4370(d)",
+      "requirement": "A named member of senior management, who is a registered principal, approves the plan and conducts the annual review.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "approval",
+        "governance"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "Members must designate a member of senior management to approve the plan and he or she shall be responsible for conducting the required annual review.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-e-1",
+      "source": "FINRA Rule 4370",
+      "section": "4370(e)",
+      "requirement": "The firm discloses to customers how the plan addresses a future significant business disruption and how it will respond to events of varying scope.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "disclosure",
+        "customer_obligations"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "Each member must disclose to its customers how its business continuity plan addresses the possibility of a future significant business disruption",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-f-1",
+      "source": "FINRA Rule 4370",
+      "section": "4370(f)(1)",
+      "requirement": "Two associated persons are designated as emergency contact persons and reported to FINRA, at least one being a member of senior management and a registered principal.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "contacts",
+        "escalation"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "The emergency contact information for the member includes designation of two associated persons as emergency contact persons.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-f-2",
+      "source": "FINRA Rule 4370",
+      "section": "4370(f)(2)",
+      "requirement": "Emergency contact information is updated promptly on any material change.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "contacts",
+        "currency"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "current as retrieved 2026-09-04",
+      "source_quote": "Each member must promptly update its emergency contact information",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    }
+  ]
+}

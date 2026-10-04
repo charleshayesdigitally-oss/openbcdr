@@ -1,0 +1,181 @@
+FFIEC IT Examination Handbook - Business Continuity Management - November 2019
+EXTRACT. Not the complete booklet. These are the passages the drafted requirement
+records were written from, transcribed from the booklet PDF. Quotes in the index
+are verified against this file. For validation, open the booklet itself.
+
+=== INTRODUCTION / SCOPE (p.2) ===
+
+This booklet does not impose requirements on entities. Instead, this booklet describes practices that examiners may use to assess an entity's BCM function.
+
+=== II.A BOARD AND SENIOR MANAGEMENT RESPONSIBILITIES (p.4) ===
+
+The board and senior management govern business continuity through defining responsibilities and accountability, and by allocating adequate resources to business continuity.
+
+Management should evaluate continuity risk, set short- and long-term continuity objectives, adopt policies and procedures to mitigate continuity risk, evaluate continuity performance, and adjust operations in response to test results and actual events.
+
+=== II.B AUDIT (p.6) ===
+
+The board and senior management should engage internal audit or independent personnel to review and validate the design and operating effectiveness of the BCM program.
+
+=== III.A BUSINESS IMPACT ANALYSIS (p.9) ===
+
+Management should develop a BIA that identifies all business functions and prioritizes them in order of criticality, analyzes related interdependencies among business processes and systems, and assesses a disruption's impact through established metrics. The BIA should define recovery priorities and resource dependencies for critical processes.
+
+Through the BIA process, management should identify interdependencies among critical operations, departments, personnel, services, and the functions with the greatest exposure to interruption. Management should identify resources on which these functions and processes depend and exposures that would warrant further protective measures. Furthermore, the BIA should include financial and other resource costs (e.g., the loss of business, and exposure to legal and regulatory consequences) needed to recover and restore business functions and processes.
+
+=== III.A.1 IDENTIFICATION OF CRITICAL BUSINESS FUNCTIONS (p.10) ===
+
+Management should inventory the entity's critical assets (e.g., people, hardware, software, data, information, and cash) and infrastructure (e.g., network connectivity, communication lines, facilities, and utilities), including those provided by third-party service providers.
+
+Management should also inventory third-party service providers, including specific services they provide. The methodology used should be repeatable, allowing management to reevaluate information after significant changes.
+
+=== III.A.2 INTERDEPENDENCY ANALYSIS (p.10) ===
+
+During its analysis, management should identify single points of failure, which may include telecommunication lines, network connections between branches, backups that become corrupted, reliance on one power source, or data center locations in close geographic proximity.
+
+=== III.A.3 IMPACT OF DISRUPTION (p.11) ===
+
+Through the BIA process, management should evaluate the potential impacts of disruptive events, including operational, financial, and other impacts. Management should establish recovery objectives after determining a disruption's impact. Common measurements include recovery point objective (RPO), recovery time objective (RTO), and maximum tolerable downtime (MTD).
+
+When it is not feasible to meet an RTO, management should verify whether the RTO is realistic, initiate an action plan and milestone(s) to document the situation, and, when appropriate, plan for its mitigation. Management should consider interrelated RTOs for each business function to determine the total downtime caused by a disruption. Establishing realistic RTOs assists management in determining a critical path and hierarchy for recovery. For example, a process with a shorter RTO that is dependent upon on a process with a longer RTO may indicate a gap that should be analyzed further.
+
+=== III.B RISK ASSESSMENT (p.12, p.15) ===
+
+Management should evaluate the likelihood and impact of potential disruptions and events. As part of this evaluation, management should consider the geographical area where the entity operates. Additionally, management should consider the risks and threats that could affect the entity's third-party service providers.
+
+The BCM risk assessment should be commensurate with the entity's risk and complexity and should include reasonably foreseeable events. Worst-case scenarios, such as destruction of the facilities and loss of life, should be addressed.
+
+=== IV.A.3 DATA BACKUP AND REPLICATION (p.19, p.20, p.21) ===
+
+Backups should be readily accessible and adhere to the entity's information security policy.
+
+Management should maintain an accessible, off-site repository of software, configuration settings, and related documentation.
+
+Management should establish effective procedures to recover critical networks and systems.
+
+Management should determine the appropriate retention periods for each iteration of data backup.
+
+BCM should include the ability to protect offline data backups from destructive malware or other threats that may corrupt production and online backup versions of data.
+
+=== IV.A.4 PERSONNEL (p.21) ===
+
+While any one employee's role may not be designated as mission critical, management should plan for mass absenteeism during an event or disruption.
+
+Management should plan for events during which personnel may not be able to access facilities and critical personnel may not be available immediately after the disruption.
+
+=== IV.A.5 THIRD-PARTY SERVICE PROVIDERS (p.22, p.23) ===
+
+Management should assess critical third-party service providers' susceptibility to multiple event scenarios and verify such third parties' resilience capabilities.
+
+Contracts and SLAs with third-party service providers should detail roles and responsibilities of each party to promote resilience.
+
+To the extent possible, management should establish plans for the resilience of third-party service providers supporting critical operations.
+
+=== IV.A.6 TELECOMMUNICATIONS (p.23) ===
+
+Given the critical nature of telecommunications, management should ensure appropriate redundancy levels in the entity's telecommunications infrastructure.
+
+=== IV.A.8 CHANGE MANAGEMENT (p.24) ===
+
+As changes are made to production systems and business processes during the normal course of business, recovery systems and documentation at alternate locations should similarly be updated to reflect production and primary system changes.
+
+=== IV.B COMMUNICATIONS (p.25) ===
+
+BCM should include communication protocols and contact lists to notify stakeholders.
+
+=== V BUSINESS CONTINUITY PLAN (p.26, p.27) ===
+
+Management should develop business continuity plan(s) (BCP) with sufficient detail in relation to the entity's size and complexity. The BCP should address key business needs and incorporate inputs from all business units.
+
+Smaller entities may have a single BCP that includes these elements whereas large, complex entities may have multiple plans supported by subsidiary components for business functions, locations, or departments. Furthermore, the BCP should be a living document, regularly updated so that it remains current with system enhancements and organizational changes.
+
+A comprehensive plan describes the authorities, responsibilities, procedures, and relocation strategies. Components of the plan should include:
+
+Roles, responsibilities, and required skills for entity personnel and third-party service providers.
+Solutions to various types of foreseeable disruptions, including those emanating from cyber threats.
+Escalation thresholds.
+Immediate steps to protect personnel and customers and minimize damage.
+Prioritization and procedures to recover functions, services, and processes.
+Critical information protection (e.g., physical, electronic, hybrid, and use of off-site storage).
+Scope and frequency of testing.
+Resumption of a normalized state for business processes.
+
+Regardless of its development process, the BCP and supporting documentation should be stored so that it is readily accessible by personnel during adverse events.
+
+=== V.A EVENT MANAGEMENT (p.27) ===
+
+The BCP should include event management procedures that detail reasonably foreseeable event types and provide thresholds and responses. Procedures should describe how to report an event to management and the situations that warrant notification to those who address events.
+
+=== V.B CONTINUITY AND RECOVERY (p.28) ===
+
+Management should establish protocols for operations continuity and system recovery.
+
+Business continuity plans and procedures should be clear, concise, and easy to implement in an emergency, such as checklists and step-by-step procedures.
+
+The BCP should include alternate identity verification methods, and management should be alert for fraud or other suspicious activities.
+
+=== V.C FACILITIES AND INFRASTRUCTURE (p.29) ===
+
+The BCP should identify alternatives for core operations, facilities, infrastructure systems, suppliers, utilities, interdependent business partners, and key personnel.
+
+=== V.C.1 DATA CENTER RECOVERY ALTERNATIVES (p.29) ===
+
+Management should document the reasons (e.g., cost and service level) for choosing an alternative and why it is appropriate based on the entity's risk profile and complexity.
+
+=== V.D PAYMENT SYSTEMS (p.31) ===
+
+The BCP should address alternate arrangements if payment systems fail (e.g., automated teller machines (ATM), funds transfers, electronic banking, remote deposit capture, or mobile capabilities).
+
+=== V.E LIQUIDITY CONSIDERATIONS (p.31) ===
+
+The BCP should detail processes to address potential cash and liquidity needs during adverse events.
+
+=== V.F.2 DISASTER RECOVERY (p.33) ===
+
+Management should identify key business processes and activities to be maintained while IT systems and applications are unavailable and prioritize the order in which these systems are restored, which should be reflected in the BIA.
+
+Procedures for restoring backlogged activity or lost transactions to identify how transaction records will be brought current within expected recovery time frames.
+
+=== V.F.3 CRISIS OR EMERGENCY MANAGEMENT (p.34) ===
+
+Management should designate key personnel from applicable departments to act during a crisis or emergency situation, commensurate with the entity's size and complexity. Designated personnel should be authorized to make decisions in a timely manner.
+
+The contact list should be distributed and accessible to key personnel and should be verified and updated regularly.
+
+=== VI TRAINING (p.35) ===
+
+Management should implement a business continuity training program for all stakeholders.
+
+The training program should include conditions for activating the BCP and what to do when key personnel are unavailable.
+
+=== VII.A EXERCISE AND TEST PROGRAM (p.38) ===
+
+Management should develop a comprehensive exercise and testing program including objectives, and plans to validate the entity's ability to restore critical business functions.
+
+Exercises and tests should occur either at appropriate intervals, when new risks are identified, or when significant changes affect the entity's operating environment. Significant changes can render existing test plans obsolete, so BCP(s) should be retested soon after the change.
+
+=== VII.F EXERCISE AND TEST SCENARIOS (p.41) ===
+
+Management should develop realistic exercise and test scenarios, based on risks, which simulate disruptions in business functions and help management determine the ability to meet both business requirements and customer expectations.
+
+=== VII.I THIRD-PARTY SERVICE PROVIDER TESTING (p.45) ===
+
+Management should request and receive test results and reports, remediation action plans and status reports upon their completion, and related analysis or modeling.
+
+=== VII.K POST-EXERCISE AND POST-TEST ACTIONS (p.46, p.47) ===
+
+Management should document issues identified during exercises and tests and create action plans with target dates for resolving issues. Exercise and test results should be analyzed and compared with the objectives and success criteria in the exercise and test plans, and reported to appropriate levels of management.
+
+Business line management should update the BCP based on test results and adjust the BCM process, including the exercise and testing program.
+
+=== VIII MAINTENANCE AND IMPROVEMENT (p.47, p.48) ===
+
+Because risks and technology often change, management should regularly review and update the business continuity program to reflect the current environment.
+
+As part of the maintenance and improvement process, management should maintain version control of key business continuity documents and ensure that the latest versions are readily available to appropriate personnel.
+
+Additionally, management should maintain backup copies of relevant business continuity documentation in the event that the primary repository becomes inaccessible.
+
+=== IX BOARD REPORTING (p.49) ===
+
+As illustrated in figure 1, management should report on the status of business continuity to the board, completing the BCM cycle. Reports should include a written presentation providing the BIA, risk assessment, BCP, exercise and test results, and identified issues.

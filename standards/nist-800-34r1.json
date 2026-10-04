@@ -1,0 +1,160 @@
+{
+  "_README": [
+    "DRAFTED FROM PRIMARY SOURCES - NOT YET VALIDATED.",
+    "",
+    "Every record carries source_quote, copied from the primary source, and every",
+    "quote was mechanically verified against that source before the record was",
+    "written. Records whose quote could not be found were dropped.",
+    "",
+    "That makes these records GROUNDED, not VALIDATED. Before any record backs an",
+    "examiner-facing report: a named human opens the primary source, confirms the",
+    "section citation and the obligation, corrects the requirement wording, sets",
+    "gap_severity as a policy decision, and flips validated_by_human.",
+    "",
+    "  python -m openbcdr validate --file standards/<this file> --validator YOUR_NAME",
+    "",
+    "SOURCE: NIST SP 800-34 Rev. 1, Contingency Planning Guide for Federal",
+    "Information Systems. PDF from nvlpubs.nist.gov, retrieved 2026-09-04, text",
+    "extracted locally.",
+    "",
+    "NOT MANDATORY. Federal contingency-planning guidance phrased in 'should',",
+    "widely adopted in banking but not itself a banking regulation."
+  ],
+  "requirements": [
+    {
+      "req_id": "NIST-800-34-3.5.1-a",
+      "source": "NIST SP 800-34 Rev. 1",
+      "section": "3.5.1 Testing",
+      "requirement": "Each system component within the plan's scope is tested to confirm the accuracy of its individual recovery procedures.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "testing",
+        "exercise",
+        "recovery"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "Revision 1",
+      "source_quote": "Each information system component should be tested to confirm the accuracy of individual recovery procedures.",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "NIST-800-34-3.5.1-b",
+      "source": "NIST SP 800-34 Rev. 1",
+      "section": "3.5.1 Testing",
+      "requirement": "Testing is conducted in as close to an operating environment as possible.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "testing",
+        "exercise"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "Revision 1",
+      "source_quote": "Testing can take on several forms and accomplish several objectives but should be conducted in as close to an operating environment as possible.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "NIST-800-34-3.6-a",
+      "source": "NIST SP 800-34 Rev. 1",
+      "section": "3.6 Plan Maintenance",
+      "requirement": "The plan is reviewed and updated regularly as part of the organisation's change management process.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "plan_freshness",
+        "change_management"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "Revision 1",
+      "source_quote": "it is essential that the ISCP be reviewed and updated regularly as part of the organization",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "NIST-800-34-4.2.1-a",
+      "source": "NIST SP 800-34 Rev. 1",
+      "section": "4.2.1 Activation Criteria and Procedure",
+      "requirement": "The plan states activation criteria, and the designated authority who activates it when a criterion is met.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "activation",
+        "authority",
+        "procedures"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "Revision 1",
+      "source_quote": "The ISCP should be activated if one or more of the activation criteria for that system are met.",
+      "validated_by": "",
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "NIST-800-34-rto",
+      "source": "NIST SP 800-34 Rev. 1",
+      "section": "3.2.2 Identify Resource Requirements (RTO)",
+      "requirement": "The plan defines a recovery time objective for each system resource in its scope.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "rto",
+        "bia"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "Revision 1",
+      "source_quote": "RTO defines the maximum amount of time that a system resource can remain unavailable before there is an unacceptable impact on other system resources",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "NIST-800-34-rpo",
+      "source": "NIST SP 800-34 Rev. 1",
+      "section": "3.2.2 Identify Resource Requirements (RPO)",
+      "requirement": "The plan defines a recovery point objective stating the point in time to which data must be recoverable after an outage.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "rpo",
+        "bia",
+        "backup"
+      ],
+      "last_confirmed": null,
+      "as_of_version": "Revision 1",
+      "source_quote": "The RPO represents the point in time, prior to a disruption or system outage, to which mission/business process data can be recovered",
+      "validated_by": "",
+      "gap_severity": "critical",
+      "validated_by_human": false
+    }
+  ]
+}

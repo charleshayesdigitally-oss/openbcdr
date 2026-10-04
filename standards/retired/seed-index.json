@@ -1,0 +1,281 @@
+{
+  "_README": [
+    "STARTER INDEX - NOT VALIDATED. Every record here is a PARAPHRASE, written",
+    "to exercise the pipeline, and every one carries validated_by_human=false.",
+    "Section references mirror the citations used in the source design document;",
+    "they have NOT been re-read against the primary sources.",
+    "",
+    "Before this index backs any real assessment: open the primary source, confirm",
+    "the section number and the obligation, replace `requirement` with accurate",
+    "language, set last_confirmed and as_of_version, and flip validated_by_human.",
+    "report.py refuses to emit an examiner-facing report while any record in scope",
+    "is still false. That refusal is the feature - do not route around it.",
+    "",
+    "FREE SOURCES ONLY (decided 2026-09-04). ISO 22301 and ISO 27001 are paid",
+    "standards whose requirement text may not be reproduced in a circulating index,",
+    "so they are excluded. Testing coverage moved to NIST SP 800-34 Rev. 1, which",
+    "is free and covers the same obligation.",
+    "",
+    "KNOWN COVERAGE GAP: crisis communication. Its only record came from ISO 22301",
+    "and was dropped with it. Add an FFIEC-sourced replacement during index build -",
+    "do not leave it uncovered.",
+    "",
+    "Spec section 5.2 sizes the real index at 200-300 records."
+  ],
+  "requirements": [
+    {
+      "req_id": "FFIEC-BCP-3.2.1",
+      "source": "FFIEC BCP Booklet",
+      "section": "3.2 - Business Impact Analysis",
+      "requirement": "Identify critical business functions and determine the impact of disruption on those functions.",
+      "mandatory": true,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [
+        "NIST SP 800-34 3.1"
+      ],
+      "related_regulations": [
+        "Federal Reserve SR 13-19"
+      ],
+      "tags": [
+        "bia",
+        "critical_functions",
+        "impact_analysis"
+      ],
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCP-3.2.2",
+      "source": "FFIEC BCP Booklet",
+      "section": "3.2 - Business Impact Analysis",
+      "requirement": "Establish recovery time objectives and recovery point objectives for each critical business function and supporting system.",
+      "mandatory": true,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "rto",
+        "rpo",
+        "bia"
+      ],
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCP-3.3.1",
+      "source": "FFIEC BCP Booklet",
+      "section": "3.3 - Risk Assessment / Scenarios",
+      "requirement": "Address a range of disruption scenarios including natural disaster, facility loss, and technology failure.",
+      "mandatory": true,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "scenarios",
+        "risk_assessment"
+      ],
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCP-3.3.2",
+      "source": "FFIEC IT Handbook - BCP Booklet",
+      "section": "3.3.2 - Cyber Resilience Scenarios",
+      "requirement": "Include destructive cyber events, including ransomware, among the disruption scenarios planned for and tested.",
+      "mandatory": true,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [
+        "NIST SP 800-184"
+      ],
+      "related_regulations": [],
+      "tags": [
+        "cyber",
+        "ransomware",
+        "scenarios"
+      ],
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCP-3.4.3",
+      "source": "FFIEC BCP Booklet",
+      "section": "3.4.3 - Third-Party Service Providers",
+      "requirement": "Document recovery expectations for critical third-party service providers, including agreed recovery objectives and evidence they can be met.",
+      "mandatory": true,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [
+        "Federal Reserve SR 13-19 IV"
+      ],
+      "tags": [
+        "third_party",
+        "vendor",
+        "rto"
+      ],
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCP-4.1.1",
+      "source": "FFIEC BCP Booklet",
+      "section": "4.1 - Recovery Procedures",
+      "requirement": "Maintain documented recovery procedures for each planned scenario, sufficient for the responsible party to execute them.",
+      "mandatory": true,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [
+        "NIST SP 800-34 3.4"
+      ],
+      "related_regulations": [],
+      "tags": [
+        "procedures",
+        "recovery"
+      ],
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FFIEC-BCP-5.1.1",
+      "source": "FFIEC BCP Booklet",
+      "section": "5.1 - Emergency Contacts",
+      "requirement": "Maintain current emergency contact information, including an escalation path with primary and backup contacts for critical roles.",
+      "mandatory": true,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "contacts",
+        "escalation"
+      ],
+      "gap_severity": "medium",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-A",
+      "source": "FINRA Rule 4370",
+      "section": "4370(a)",
+      "requirement": "Create and maintain a written business continuity plan identifying procedures reasonably designed to enable the firm to meet its obligations to customers and counterparties during a significant business disruption.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "bcp",
+        "written_plan"
+      ],
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-B",
+      "source": "FINRA Rule 4370",
+      "section": "4370(b)",
+      "requirement": "Review the business continuity plan at least annually and update it to reflect material changes to operations, structure, business, or location.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "annual_review",
+        "plan_freshness"
+      ],
+      "gap_severity": "critical",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FINRA-4370-D",
+      "source": "FINRA Rule 4370",
+      "section": "4370(d)",
+      "requirement": "Maintain and update emergency contact information provided to FINRA.",
+      "mandatory": true,
+      "applicability": [
+        "finra_member"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "contacts",
+        "disclosure"
+      ],
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "FED-SR-13-19-IV",
+      "source": "Federal Reserve SR 13-19",
+      "section": "IV - Managing Third-Party Risk",
+      "requirement": "Address business continuity and contingency planning for services provided by third parties, including the institution's own contingency for a provider failure.",
+      "mandatory": true,
+      "applicability": [
+        "fed_member",
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "third_party",
+        "vendor",
+        "contingency"
+      ],
+      "gap_severity": "high",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "NIST-800-34-3.4",
+      "source": "NIST SP 800-34 Rev. 1",
+      "section": "3.4 - Contingency Plan Development",
+      "requirement": "Document activation criteria and the authority to activate the plan, so it is unambiguous when the plan takes effect and who declares it.",
+      "mandatory": false,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [],
+      "tags": [
+        "activation",
+        "authority",
+        "procedures"
+      ],
+      "gap_severity": "medium",
+      "validated_by_human": false
+    },
+    {
+      "req_id": "NIST-800-34-3.5",
+      "source": "NIST SP 800-34 Rev. 1",
+      "section": "3.5 - Plan Testing, Training, and Exercises",
+      "requirement": "Test the contingency plan to validate that recovery procedures are effective, and document the results of each test including lessons identified.",
+      "mandatory": true,
+      "applicability": [
+        "all_banks"
+      ],
+      "related_standards": [],
+      "related_regulations": [
+        "FINRA Rule 4370"
+      ],
+      "tags": [
+        "testing",
+        "exercise",
+        "lessons_learned"
+      ],
+      "gap_severity": "critical",
+      "validated_by_human": false
+    }
+  ]
+}
