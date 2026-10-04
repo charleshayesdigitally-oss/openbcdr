@@ -13,8 +13,8 @@
 ## Who it's for — BOTH
 
 Two starter profiles ship in git, both fictional:
-- **`org/starter-bank.yaml`** — today's behaviour (FFIEC, FINRA, NIST; regulated-institution defaults). Public standards only.
-- **`org/starter-small-business.yaml`** — no regulator; plain-language terms; tiers sized for a small team; checks against a small-business index source set.
+- **`org/starter-bank.json`** — today's behaviour (FFIEC, FINRA, NIST; regulated-institution defaults). Public standards only.
+- **`org/starter-small-business.json`** — no regulator; plain-language terms; tiers sized for a small team; checks against a small-business index source set.
 
 **Small-business index sources** must be public, free and license-checked before any record is written (the ISO ban stands). Candidates to verify, not yet confirmed: NIST SP 800-34 (already in), FEMA/Ready.gov business continuity planning materials, NIST small-business cybersecurity guidance. Same `decompose` → human `validate` gate as today.
 
@@ -39,7 +39,9 @@ Before the repository goes public, every item below is done and a full-history s
 
 ## Phase 1 — Organization profile + questionnaire (drafting depends on it)
 
-One file per org: `org/<slug>.local.yaml` (gitignored) plus the two tracked, fictional starters (`org/starter-bank.yaml`, `org/starter-small-business.yaml`). Loaded by `--org <path>`; extends today's `--profile` (`cli.py:30-33`), which keeps working.
+**Status:** 1a (profile format, both starters, `--org` wired into applicability, routing, deadlines, staleness and test rules) is built. 1b (the questionnaire) and 1c (prompts and terminology) are next. Profiles are JSON rather than YAML: no new dependency, and most people fill them in through the questionnaire.
+
+One file per org: `org/<slug>.local.json` (gitignored) plus the two tracked, fictional starters (`org/starter-bank.json`, `org/starter-small-business.json`). Loaded by `--org <path>`; extends today's `--profile` (`cli.py:30-33`), which keeps working.
 
 Profile holds:
 - **Identity:** org name, sector, size, regulators, applicability tags (replaces the hardcoded `DEFAULT_PROFILE`).
@@ -50,14 +52,14 @@ Profile holds:
 - **Org policies (optional):** extra index records under `source: org-policy`, with their own provenance field and the same human-validation gate. They never mix with public records in a report without being labelled as the org's own.
 
 **The onboarding questionnaire (how a company customizes it):**
-- `openbcdr onboard --starter <bank|small-business>` walks the company through questions in plain language and writes `org/<slug>.local.yaml`. Every answer is validated against the profile schema before the file is written; nothing is guessed, and a skipped question keeps the starter's default (marked as a default in the file).
+- `openbcdr onboard --starter <bank|small-business>` walks the company through questions in plain language and writes `org/<slug>.local.json`. Every answer is validated against the profile schema before the file is written; nothing is guessed, and a skipped question keeps the starter's default (marked as a default in the file).
 - The same questions also export as a fill-in document (`openbcdr onboard --export questionnaire.md`) for someone who won't run a command line, and import back with `onboard --import`. One question source drives both, so they can't drift.
 - Questions cover, in order: who you are (name, sector, size, regulators if any) · what must keep running (critical functions/services, in priority order) · how fast (recovery tiers and target times) · who's who (owner per function, who gets findings, escalation) · your words (terms you use for plans, tiers, roles) · your plan shape (required sections, or "use the starter's") · your own policies (optional upload, labelled as the org's).
 - Re-running `onboard --update` changes one section without redoing the rest, so the profile can be updated as the company changes.
 
 Also: replace the hardcoded "mid-size regional bank" wording in prompts and `AGENT-INSTRUCTIONS.md` with profile values, and generate the prompt-only form from the profile (some deployments run prompt-only).
 
-**Done when:** `onboard` produces a valid profile from both starters (tested with scripted answers, and with an exported-then-imported questionnaire); each starter changes tiers, routing, terminology and template in a run, verified by tests; with no `--org` given, output is byte-identical to today's; the leak scan [6c] also scans for profile values if a `*.local.yaml` is present.
+**Done when:** `onboard` produces a valid profile from both starters (tested with scripted answers, and with an exported-then-imported questionnaire); each starter changes tiers, routing, terminology and template in a run, verified by tests; with no `--org` given, output is byte-identical to today's; the leak scan [6c] also scans for profile values if a `*.local.json` is present.
 
 ## Phase 2 — Gap remediation drafts (smaller, safer first step into writing)
 

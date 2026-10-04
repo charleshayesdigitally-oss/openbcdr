@@ -88,6 +88,21 @@ python -m openbcdr analyze --plan APP_PAYPROC_v4 --open-gaps
 
 Model defaults to `claude-opus-5`; override with `BCDR_MODEL` / `BCDR_EFFORT`.
 
+### Customise it to your organisation
+
+Pass an organisation profile with `--org` (before the command). Two fictional
+starters ship in `org/`; copy one to `org/<your-org>.local.json` (gitignored, never
+committed) and edit it:
+
+```bash
+python -m openbcdr --org org/starter-small-business.json --db test.sqlite3 coherence --plan APP_PAYPROC_v4
+```
+
+A profile sets which standards apply, who gets each finding and how fast, when
+contacts and plans count as stale, and whether an annual test is required. With
+no `--org`, the built-in defaults apply (the same as `org/starter-bank.json`).
+A guided questionnaire to build a profile is on the roadmap.
+
 ---
 
 ## Running the agent without this codebase bound to it

@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 from . import calibrate, config, import_findings, ingest, report, standards, triage, validate_index
+from . import profile as org_profile
 from .analyzers import coherence
 from .boundary import BoundaryViolation
 from .models import PlanExtract
@@ -30,10 +31,36 @@ from .store import Store
 DEFAULT_PROFILE = {"all_banks": True, "finra_member": True, "fed_member": True, "sifi": False}
 
 
-def _load_profile(path: str | None) -> dict[str, bool]:
-    if not path:
-        return dict(DEFAULT_PROFILE)
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+def _load_profile(path: str | None, org=None) -> dict[str, bool]:
+    """Applicability tags: an explicit --profile file wins, then the --org
+    profile, then the built-in default."""
+    if path:
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    if org is not None:
+        return dict(org.applicability)
+    return dict(DEFAULT_PROFILE)
+
+
+def _in_scope(args) -> list:
+    """Requirements that apply to this run. An empty scope is refused: a report
+    over zero requirements would print a score that measures nothing."""
+    reqs = standards.applicable(standards.load(),
+                                _load_profile(args.profile, getattr(args, "org_profile", None)))
+    if not reqs:
+        raise SystemExit("No requirement in the standards index applies to this profile "
+                         "(check its applicability tags). Refusing to analyse or report on an "
+                         "empty scope.")
+    return reqs
+
+
+def _test_rules(args) -> dict:
+    """Annual-test rules for coherence. Without --org, behaviour is unchanged."""
+    org = getattr(args, "org_profile", None)
+    finra = not args.not_finra_member
+    if org is None:
+        return {"finra_member": finra}
+    return {"finra_member": finra and org.applicability.get("finra_member", False),
+            "annual_required": org.thresholds.annual_test_required}
 
 
 def _plan_from_row(row) -> PlanExtract:
@@ -73,7 +100,7 @@ def cmd_coherence(args) -> int:
     store = Store(args.db)
     row = store.latest_plan_version(args.plan)
     plan = _plan_from_row(row)
-    issues = coherence.run_all(plan, finra_member=not args.not_finra_member)
+    issues = coherence.run_all(plan, **_test_rules(args))
     summary = coherence.summarize(issues)
 
     print("Coherence: " + str(summary["total"]) + " findings "
@@ -97,7 +124,7 @@ def cmd_analyze(args) -> int:
     plan = _plan_from_row(row)
     plan_text = row["raw_text"]
 
-    reqs = standards.applicable(standards.load(), _load_profile(args.profile))
+    reqs = _in_scope(args)
     stats = standards.coverage_stats(reqs)
     print("Standards in scope: " + str(stats["total"]) + " (" + str(stats["validated"])
           + " validated)")
@@ -137,7 +164,7 @@ def cmd_report(args) -> int:
     store = Store(args.db)
     row = store.latest_plan_version(args.plan)
     plan = _plan_from_row(row)
-    reqs = standards.applicable(standards.load(), _load_profile(args.profile))
+    reqs = _in_scope(args)
 
     from .models import CoverageFinding
     findings = [CoverageFinding(
@@ -147,7 +174,7 @@ def cmd_report(args) -> int:
         evidence_verified=bool(r["evidence_verified"]),
     ) for r in store.findings_for(int(row["id"]))]
 
-    issues = coherence.run_all(plan, finra_member=not args.not_finra_member)
+    issues = coherence.run_all(plan, **_test_rules(args))
     text = report.render(
         plan_id=plan.plan_id, plan_version=plan.plan_version, findings=findings,
         requirements=reqs, issues=issues, gaps=store.open_gaps(plan.plan_id),
@@ -370,7 +397,7 @@ def cmd_import_findings(args) -> int:
         store.close()
         return 2
 
-    reqs = standards.applicable(standards.load(), _load_profile(args.profile))
+    reqs = _in_scope(args)
     known = {r.req_id for r in reqs}
     findings, problems = import_findings.to_findings(payload, row["raw_text"], known)
 
@@ -394,6 +421,8 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="openbcdr", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--db", default=str(config.DB_PATH))
+    p.add_argument("--org", help="organisation profile JSON (see org/ for the starters); "
+                                 "omit it and the built-in defaults apply")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     i = sub.add_parser("ingest", help="extract a plan into the knowledge base")
@@ -500,6 +529,10 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv=None) -> int:
     args = build_parser().parse_args(argv)
+    args.org_profile = None
+    if args.org:
+        args.org_profile = org_profile.load(args.org)
+        org_profile.apply(args.org_profile)
     return args.func(args)
 
 
