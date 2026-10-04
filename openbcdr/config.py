@@ -18,6 +18,11 @@ BOUNDARY_PATTERNS_LOCAL = ROOT / "config" / "boundary_patterns.local.txt"
 # across calls, so this only trades per-call output size against call count.
 REQUIREMENTS_PER_CALL = 12
 
+# Added to the plan-reading prompts by an organisation profile (--org): its own
+# words, and the good-practice framing for an unregulated organisation. Empty
+# without --org, so the prompts are unchanged.
+ORG_CONTEXT = ""
+
 # Severity -> (default deadline in BUSINESS days, escalate-if-no-response days)
 # Spec section 7.2. Medium/Low deadlines in the spec are calendar days; kept as
 # business days here for one consistent clock. Change deliberately, not by drift.

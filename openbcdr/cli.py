@@ -470,6 +470,24 @@ def cmd_onboard(args) -> int:
     return 0
 
 
+def cmd_instructions(args) -> int:
+    """Fill AGENT-INSTRUCTIONS.md from the organisation profile (no API calls)."""
+    from . import instructions, onboard
+    if args.org_profile is None:
+        raise SystemExit("instructions needs --org <profile> (before the command)")
+    text = instructions.render(args.org_profile)
+    if args.out:
+        out = onboard.check_out_path(Path(args.out))
+        if out.exists() and not args.force:
+            raise SystemExit(str(out) + " already exists. Use --force to replace it.")
+        out.write_text(text, encoding="utf-8")
+        print("Instructions written to " + str(out) + ". Paste them into the agent's instructions field.")
+    else:
+        sys.stdout.reconfigure(encoding="utf-8")
+        print(text)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="openbcdr", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -584,6 +602,13 @@ def build_parser() -> argparse.ArgumentParser:
     ob.add_argument("--import", dest="import_path", help="read answers from a filled-in document")
     ob.add_argument("--force", action="store_true", help="replace an existing --out file")
     ob.set_defaults(func=cmd_onboard)
+
+    ins = sub.add_parser("instructions",
+                         help="fill the agent instructions from your organisation profile")
+    ins.add_argument("--out", help="write to a file; the name must contain .local. "
+                                   "(it holds your organisation's details)")
+    ins.add_argument("--force", action="store_true")
+    ins.set_defaults(func=cmd_instructions)
 
     v = sub.add_parser("audit-verify", help="verify the hash chain of the audit trail")
     v.set_defaults(func=cmd_audit_verify)

@@ -179,3 +179,5 @@ def apply(profile: OrgProfile) -> None:
     config.CONTACT_STALE_MEDIUM_DAYS = profile.thresholds.contact_stale_medium_days
     config.CONTACT_STALE_HIGH_DAYS = profile.thresholds.contact_stale_high_days
     config.PLAN_STALE_MONTHS = profile.thresholds.plan_stale_months
+    from .instructions import context_note
+    config.ORG_CONTEXT = context_note(profile)

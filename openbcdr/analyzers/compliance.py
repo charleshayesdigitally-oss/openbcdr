@@ -82,7 +82,7 @@ def analyze(
     # every call and go in the system prompt behind cache_control. Only the
     # requirement batch varies, and it goes in the user turn.
     system = [
-        llm.cache_block(SYSTEM),
+        llm.cache_block(SYSTEM + config.ORG_CONTEXT),
         llm.cache_block("<plan_document>\n" + plan_text + "\n</plan_document>"),
     ]
 
