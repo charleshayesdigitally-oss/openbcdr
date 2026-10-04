@@ -63,6 +63,8 @@ Also: replace the hardcoded "mid-size regional bank" wording in prompts and `AGE
 
 ## Phase 2 — Gap remediation drafts (smaller, safer first step into writing)
 
+**Status:** built (`openbcdr draft-fix`). Proposed text may hold no specific value (every value is a placeholder); plan, profile and requirement facts appear only as verified whole-sentence quotes; every rendered field is checked; every draft, shown or refused, is in the audit chain. The value detector is a strong net, not a proof; proper names aren't checked by code.
+
 For each open gap, `openbcdr draft-fix <gap_id>` proposes plan text that would close it.
 - Output is a structured `RemediationDraft`: target section, proposed text, the `req_id`s it addresses, and `[ORG: ...]` placeholders for every fact the agent cannot know (names, numbers, vendors, contacts, RTOs not in the profile). **It never invents a fact.**
 - It is a proposal for the plan owner, never an edit to the plan (the existing "no authority to alter a plan" rule stands).

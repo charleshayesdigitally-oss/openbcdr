@@ -470,6 +470,34 @@ def cmd_onboard(args) -> int:
     return 0
 
 
+def cmd_draft_fix(args) -> int:
+    """Draft a fix for one open gap (calls the API). Verified before it is shown."""
+    from . import draft_fix, onboard
+    out = None
+    if args.out:
+        out = onboard.check_out_path(Path(args.out))
+        if out.exists() and not args.force:
+            raise SystemExit(str(out) + " already exists. Use --force to replace it.")
+    store = Store(args.db)
+    try:
+        _draft, _gap, text = draft_fix.draft(store, args.gap_id, getattr(args, "org_profile", None))
+    except draft_fix.DraftRefused as e:
+        print("Draft refused, nothing shown. The model's draft failed these checks:", file=sys.stderr)
+        for p in e.problems:
+            print("  - " + p, file=sys.stderr)
+        print("The refusal is in the audit log. Run it again, or write the fix by hand.", file=sys.stderr)
+        store.close()
+        return 2
+    store.close()
+    if out:
+        out.write_text(text, encoding="utf-8")
+        print("Draft written to " + str(out) + ". It is a proposal: the gap stays open.")
+    else:
+        sys.stdout.reconfigure(encoding="utf-8")
+        print(text)
+    return 0
+
+
 def cmd_instructions(args) -> int:
     """Fill AGENT-INSTRUCTIONS.md from the organisation profile (no API calls)."""
     from . import instructions, onboard
@@ -602,6 +630,14 @@ def build_parser() -> argparse.ArgumentParser:
     ob.add_argument("--import", dest="import_path", help="read answers from a filled-in document")
     ob.add_argument("--force", action="store_true", help="replace an existing --out file")
     ob.set_defaults(func=cmd_onboard)
+
+    dfx = sub.add_parser("draft-fix",
+                         help="draft proposed plan text for one open gap (calls the API)")
+    dfx.add_argument("gap_id")
+    dfx.add_argument("--out", help="write to a file; the name must contain .local. "
+                                   "(it holds plan content)")
+    dfx.add_argument("--force", action="store_true")
+    dfx.set_defaults(func=cmd_draft_fix)
 
     ins = sub.add_parser("instructions",
                          help="fill the agent instructions from your organisation profile")

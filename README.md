@@ -88,6 +88,25 @@ python -m openbcdr analyze --plan APP_PAYPROC_v4 --open-gaps
 
 Model defaults to `claude-opus-5`; override with `BCDR_MODEL` / `BCDR_EFFORT`.
 
+### Draft a fix for a gap
+
+```bash
+python -m openbcdr draft-fix GAP-2026-0004 --out fix.local.md   # calls the API
+```
+
+The model proposes plan text for one open gap and labels where each statement
+comes from. The proposed text may not state any specific value: every number,
+date, time, amount, count, frequency or contact is an `[ORG: ...]` placeholder
+for the owner to fill. Facts it builds on are shown separately as quotes, each
+a whole line or sentence copied word for word from the plan, your profile or the
+requirement, and checked. Code refuses the whole draft if any rule breaks.
+
+The value check is a strong net, not a proof: no pattern catches every way to
+write a value, and names of people, vendors and systems aren't checked by code.
+So a draft is always a proposal. The gap stays open and nothing counts as
+coverage until a person reviews it, fills the placeholders and the plan is
+re-ingested.
+
 ### Customise it to your organisation
 
 Pass an organisation profile with `--org` (before the command). Two fictional
