@@ -139,7 +139,7 @@ if p:
                          p.thresholds.annual_test_required) == (45, 100, False))
     kept = {s.title: s.covers_tags for s in p.plan_template}
     check("a kept section keeps its covered tags, a new one starts empty",
-          kept.get("What this plan covers") == ["scope"] and kept.get("Brand new section") == [])
+          kept.get("What this plan covers") == [s["covers_tags"] for s in small["plan_template"] if s["title"] == "What this plan covers"][0] and kept.get("Brand new section") == [])
 
 print("\n[O4] the rules section decides which standards apply")
 p, _ = new(small, {"name": "X (synthetic)", "is_bank": "yes"})

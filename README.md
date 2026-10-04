@@ -107,6 +107,21 @@ So a draft is always a proposal. The gap stays open and nothing counts as
 coverage until a person reviews it, fills the placeholders and the plan is
 re-ingested.
 
+### Draft a whole plan
+
+```bash
+python -m openbcdr --org org/acme.local.json draft-plan --export-intake intake.local.md
+python -m openbcdr --org org/acme.local.json draft-plan --intake intake.local.md --out plan.local.md
+```
+
+A short intake asks what only the owner knows (the service, what it depends
+on, who runs recovery, what happens today when it fails). The draft follows
+your profile's plan template, one section at a time, with the requirements
+whose tags match that section. Every section passes the same checks as a gap
+fix. A section that fails is replaced by a marked "write this section by hand"
+stub with the reasons, never dropped. The result is a draft to finish, not a
+finished plan.
+
 ### Customise it to your organisation
 
 Pass an organisation profile with `--org` (before the command). Two fictional

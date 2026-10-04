@@ -71,6 +71,8 @@ For each open gap, `openbcdr draft-fix <gap_id>` proposes plan text that would c
 
 ## Phase 3 — Full plan drafting from the template
 
+**Status:** built (`openbcdr draft-plan`): intake export/import, one verified call per template section with tag-matched requirements, failed sections become marked stubs, every outcome audit-logged. Not built yet: the `basis` field covers provenance, but per-statement `limitations` (DRJ idea 11) and the DRJ checks (claims, measured recovery, dependencies, AI dependencies and the rest) are separate work.
+
 `openbcdr draft-plan --org <profile> --scope <business_unit|it_application|...> --intake <answers.md>`
 - **Intake first:** a structured questionnaire built from the template + index (critical functions, dependencies, vendors, contacts, tiers). The draft is built from the answers; anything unanswered stays an `[ORG: ...]` placeholder.
 - Output: a structured `PlanDraft` per template section, each section listing the `req_id`s it is meant to satisfy.

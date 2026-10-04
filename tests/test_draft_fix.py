@@ -233,7 +233,7 @@ with tempfile.TemporaryDirectory() as td:
         draft_fix.draft(store, gid)
         ok = False
     except draft_fix.DraftRefused as e:
-        ok = any("not about" in p for p in e.problems)
+        ok = any("not given" in p for p in e.problems)
     check("a coherence gap's draft can't claim any requirement", ok)
     resp([("Document it.", "inference")], req_ids=[req.req_id])
     d, _, text = draft_fix.draft(store, cgap["gap_id"])
