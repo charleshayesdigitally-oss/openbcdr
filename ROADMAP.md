@@ -39,7 +39,7 @@ Before the repository goes public, every item below is done and a full-history s
 
 ## Phase 1 — Organization profile + questionnaire (drafting depends on it)
 
-**Status:** 1a (profile format, both starters, `--org` wired into applicability, routing, deadlines, staleness and test rules) is built. 1b (the questionnaire) and 1c (prompts and terminology) are next. Profiles are JSON rather than YAML: no new dependency, and most people fill them in through the questionnaire.
+**Status:** 1a (profile format, both starters, `--org` wired into applicability, routing, deadlines, staleness and test rules) and 1b (the `onboard` questionnaire: interactive, export/import document, `--update --section`) are built. 1c (prompts and terminology) is next. The "own policies" upload is deferred to 1c, since org-policy records need their own provenance rules. Profiles are JSON rather than YAML: no new dependency, and most people fill them in through the questionnaire.
 
 One file per org: `org/<slug>.local.json` (gitignored) plus the two tracked, fictional starters (`org/starter-bank.json`, `org/starter-small-business.json`). Loaded by `--org <path>`; extends today's `--profile` (`cli.py:30-33`), which keeps working.
 

@@ -101,7 +101,19 @@ python -m openbcdr --org org/starter-small-business.json --db test.sqlite3 coher
 A profile sets which standards apply, who gets each finding and how fast, when
 contacts and plans count as stale, and whether an annual test is required. With
 no `--org`, the built-in defaults apply (the same as `org/starter-bank.json`).
-A guided questionnaire to build a profile is on the roadmap.
+
+Build a profile by answering plain questions instead of editing JSON:
+
+```bash
+python -m openbcdr onboard --starter small-business --out org/acme.local.json      # asks at the prompt
+python -m openbcdr onboard --starter bank --export questionnaire.md                # fill-in document
+python -m openbcdr onboard --starter bank --import questionnaire.md --out org/acme.local.json
+python -m openbcdr onboard --update org/acme.local.json --section people           # change one part
+```
+
+Answers are checked as a whole before anything is written, a blank answer keeps
+the starting value (and is listed in the profile's `defaults_used`), and the
+file name must contain `.local.` so a real profile is never committed.
 
 ---
 

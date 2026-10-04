@@ -417,6 +417,59 @@ def cmd_import_findings(args) -> int:
     return 0
 
 
+def cmd_onboard(args) -> int:
+    """Build or update an organisation profile from plain answers (no API calls)."""
+    from . import onboard
+    if args.update and args.starter:
+        raise SystemExit("use --starter for a new profile or --update for an existing one, not both")
+    if not args.update and not args.starter:
+        raise SystemExit("choose a starting point: --starter bank|small-business, or --update <profile>")
+    base = onboard.load_base(starter=args.starter, existing=Path(args.update) if args.update else None)
+    sections = set(args.section) if args.section else None
+    if sections and not sections <= set(onboard.SECTIONS):
+        raise SystemExit("--section must be one of: " + ", ".join(onboard.SECTIONS))
+
+    if args.export:
+        exp = Path(args.export)
+        if exp.exists() and not args.force:
+            raise SystemExit(str(exp) + " already exists. Choose a new file name, or --force to replace it.")
+        if args.update:
+            # An export from an existing profile carries that organisation's answers.
+            onboard.check_out_path(exp)
+        exp.write_text(
+            onboard.export_markdown(base, args.starter or args.update), encoding="utf-8")
+        print("Questionnaire written to " + args.export + ". Fill in the Answer: lines, then run")
+        print("  python -m openbcdr onboard " + ("--starter " + args.starter if args.starter
+                                                  else "--update " + args.update)
+              + " --import " + args.export + " --out org/<your-org>.local.json")
+        return 0
+
+    out = Path(args.out or args.update or "")
+    if not str(out):
+        raise SystemExit("--out is required (e.g. org/acme.local.json)")
+    onboard.check_out_path(out)
+    is_target = bool(args.update) and out.resolve() == Path(args.update).resolve()
+    if out.exists() and not is_target and not args.force:
+        raise SystemExit(str(out) + " already exists. Use --update to change it, or --force to replace it.")
+
+    if args.import_path:
+        answers = onboard.import_markdown(Path(args.import_path).read_text(encoding="utf-8-sig"))
+    else:
+        answers = onboard.interactive(base, sections, starter=bool(args.starter))
+    profile, problems = onboard.apply_answers(base, answers, sections, starter=bool(args.starter))
+    if problems:
+        print("Nothing written. Fix these answers and try again:", file=sys.stderr)
+        for pr in problems:
+            print("  - " + pr, file=sys.stderr)
+        return 2
+    onboard.write(profile, out)
+    print("Profile written to " + str(out) + " (its .local. name keeps it out of git).")
+    if profile.defaults_used:
+        print("Kept the starting value for: " + ", ".join(profile.defaults_used))
+    print("Use it with: python -m openbcdr --org " + str(out) + " <command>")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="openbcdr", description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -517,6 +570,20 @@ def build_parser() -> argparse.ArgumentParser:
     imp.add_argument("--plan", help="override the plan_id in the payload")
     imp.add_argument("--profile")
     imp.set_defaults(func=cmd_import_findings)
+
+    ob = sub.add_parser("onboard",
+                        help="build or update your organisation profile from plain questions")
+    ob.add_argument("--starter", choices=["bank", "small-business"],
+                    help="start a new profile from this starter")
+    ob.add_argument("--update", help="change an existing profile (keeps every unasked answer)")
+    ob.add_argument("--section", action="append",
+                    help="only ask this section (repeatable): who, rules, running, speed, people, "
+                         "deadlines, upkeep, words, template")
+    ob.add_argument("--out", help="where to write the profile; the name must contain .local.")
+    ob.add_argument("--export", help="write a fill-in questionnaire document instead of asking")
+    ob.add_argument("--import", dest="import_path", help="read answers from a filled-in document")
+    ob.add_argument("--force", action="store_true", help="replace an existing --out file")
+    ob.set_defaults(func=cmd_onboard)
 
     v = sub.add_parser("audit-verify", help="verify the hash chain of the audit trail")
     v.set_defaults(func=cmd_audit_verify)
