@@ -49,8 +49,8 @@ class _Strict(BaseModel):
 
 class Tier(_Strict):
     name: str
-    rto_hours: float = Field(gt=0)
-    rpo_hours: Optional[float] = Field(default=None, ge=0)
+    rto_hours: float = Field(gt=0, allow_inf_nan=False)
+    rpo_hours: Optional[float] = Field(default=None, ge=0, allow_inf_nan=False)
     description: str = ""
 
 
@@ -83,6 +83,8 @@ class OrgProfile(_Strict):
     size: str = ""
     regulators: list[str] = Field(default_factory=list)
     applicability: dict[str, bool]
+    # What must keep running, most important first (plan drafting uses this).
+    critical_services: list[str] = Field(default_factory=list)
     tiers: list[Tier] = Field(default_factory=list)
     role_titles: dict[str, str] = Field(default_factory=dict)
     routing: dict[str, list[str]] = Field(default_factory=lambda: dict(config.ROUTING))
